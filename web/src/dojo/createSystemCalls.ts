@@ -12,16 +12,16 @@ export enum Direction {
 export function createSystemCalls(
     { execute, syncWorker }: SetupNetworkResult,
 ) {
-    const spawn = async () => {
-        const tx = await execute("spawn", []);
+    const add_pixel = async () => {
+        const tx = await execute("add_pixel", []);
         // await awaitStreamValue(txReduced$, (txHash) => txHash === tx.transaction_hash);
         syncWorker.sync(tx.transaction_hash);
         
     };
 
-    const move = async (direction: Direction) => {
+    const change_color = async (direction: Direction) => {
         // execute from core
-        const tx = await execute("move", [direction]);
+        const tx = await execute("change_color", [direction]);
         // awaitStreamValue(txReduced$, (txHash) => txHash === tx.transaction_hash);
         syncWorker.sync(tx.transaction_hash);
         console.log("Moved ", direction)
@@ -29,7 +29,7 @@ export function createSystemCalls(
 
 
     return {
-        spawn,
-        move
+        add_pixel,
+        change_color
     };
 }

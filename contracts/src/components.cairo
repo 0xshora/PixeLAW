@@ -1,15 +1,26 @@
 use array::ArrayTrait;
 
 #[derive(Component, Copy, Drop, Serde, SerdeLen)]
-struct Moves {
-    remaining: u8, 
+struct Position {
+    x: u64,
+    y: u64 
 }
 
 #[derive(Component, Copy, Drop, Serde, SerdeLen)]
-struct Position {
-    x: u32,
-    y: u32
+struct Owner {
+    address: felt252,
 }
+
+#[derive(Component, Copy, Drop, Serde, SerdeLen)]
+struct StartTime {
+    timestamp: u64,
+}
+
+#[derive(Component, Copy, Drop, Serde, SerdeLen)]
+struct Color {
+    argb: u32,
+}
+
 
 trait PositionTrait {
     fn is_zero(self: Position) -> bool;
